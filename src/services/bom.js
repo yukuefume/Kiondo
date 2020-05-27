@@ -14,8 +14,14 @@ exports.currentTemperature = (callback) => {
         })
 
         response.on('end', () => {
-            var recent_data = JSON.parse(str).observations.data[0]
-            callback(recent_data)
+            var latest_data = JSON.parse(str).observations.data[0]
+            var data = { 
+                'temperature': latest_data.air_temp,
+                'probe': 'web',
+                'location': latest_data.name,
+                'time': latest_data.local_date_time_full
+              }
+            callback(data)
         });
     }
 

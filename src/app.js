@@ -6,34 +6,23 @@ app = express()
 
 
 app.get('/', (req, res) => {
-    res.send('rpitemp-api is running!');
+    res.send('Kiondo is running!');
 }) 
 
 app.get('/temperature', (req, res) => {
     var q = url.parse(req.url, true).query;
-    var temp = undefined
 
     if (q.outside == 'yes') {    
         bom.currentTemperature((data) => {
-
-            var data = { 
-              'temperature': data.air_temp,
-              'probe': 'web',
-              'location': data.name,
-              'time': data.local_date_time_full
-            }
-    
             res.send(data)
         });
     } else {
-        var probe = 'thermometer'
-
+        /* Stub code */
         var data = { 
-          'temperature': temp,
-          'probe': probe,
+          'temperature': '20',
+          'probe': 'thermometer',
           'time': Date()
         }
-    
         res.send(data)
     }
 })
