@@ -1,0 +1,14 @@
+{
+  "name": "kiondo",
+  "version": "1.0.0",
+  "description": "An api for logging temperature",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Takeru | nichijoulife.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
