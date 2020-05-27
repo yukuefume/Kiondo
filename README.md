@@ -1,2 +1,2 @@
 # Kiondo
-A simple API server for temperature logging
+A simple RESTful API server for temperature monitoring.
