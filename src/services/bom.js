@@ -8,7 +8,6 @@ exports.currentTemperature = (callback) => {
 
     http_callback = (response) => {
         var str = ''
-        var recent_data = ''
 
         response.on('data', (chunk) => {
             str += chunk
