@@ -2,8 +2,8 @@ var bom = require('./services/bom.js')
 
 var url = require('url')
 var express = require('express');
-app = express()
 
+app = express()
 
 app.get('/', (req, res) => {
     res.send('Kiondo is running!');
