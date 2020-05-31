@@ -10,7 +10,7 @@ let app = express()
 
 /* Check if existing database exist, if not create one */
 const db = require('./services/db.js')
-db.connection.create()
+
 
 /* CRON job for logging values */
 cron.schedule("* * * * *", function() {

@@ -103,3 +103,9 @@ dist
 # TernJS port file
 .tern-port
 src/temperature.db
+
+# MacOS
+.DS_Store
+
+# Sqlite3 DB
+*.db
