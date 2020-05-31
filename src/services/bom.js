@@ -1,21 +1,23 @@
-exports.currentTemperature = (callback) => {
-    var http = require('http')
+const http = require('http')
 
-    var options = {
+
+module.exports.getTemperature = function getTemperature(callback) {
+    /* Weather data for Parafield, South Australia */
+    let options = {
         host: 'reg.bom.gov.au',
         path: '/fwo/IDS60901/IDS60901.95677.json'
     }
 
-    http_callback = (response) => {
-        var str = ''
+    onResponseCallback = (response) => {
+        let str = ''
 
         response.on('data', (chunk) => {
             str += chunk
         })
 
         response.on('end', () => {
-            var latest_data = JSON.parse(str).observations.data[0]
-            var data = { 
+            let latest_data = JSON.parse(str).observations.data[0]
+            let data = { 
                 'temperature': latest_data.air_temp,
                 'probe': 'web',
                 'location': latest_data.name,
@@ -25,5 +27,5 @@ exports.currentTemperature = (callback) => {
         });
     }
 
-    http.request(options, http_callback).end();
-  }; 
+    http.request(options, onResponseCallback).end();
+}

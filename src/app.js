@@ -8,12 +8,16 @@ const express = require('express');
 let app = express()
 
 
-/* Check if existing database exist, if not create one */
+/**
+ * Initialise sqlite3 database for temperature logging.
+ */
 const db = require('./services/db.js')
 
 
-/* CRON job for logging values */
-cron.schedule("* * * * *", function() {
+/**
+ *  CRON job for logging temperature values every 30 minutes.
+ */
+cron.schedule("30 * * * *", function() {
   console.log("running a task every minute");
 });
 
@@ -25,20 +29,22 @@ app.get('/', (req, res) => {
 
 app.get('/temperature', (req, res) => {
   var q = url.parse(req.url, true).query;
-
-if (q.outside == 'yes') {    
-    bom.currentTemperature((data) => {
+  
+  if (q.outside == 'yes') {    
+      console.log('outside!')
+      console.log(bom)
+      bom.getTemperature(function(data) {
+        res.send(data)
+      });
+    } else {
+      /* Stub code */
+      var data = { 
+        'temperature': '20',
+        'probe': 'thermometer',
+        'time': Date()
+      }
       res.send(data)
-    });
-  } else {
-    /* Stub code */
-    var data = { 
-      'temperature': '20',
-      'probe': 'thermometer',
-      'time': Date()
     }
-    res.send(data)
-  }
 })
 
 let server = app.listen(8081, () => {
