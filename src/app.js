@@ -18,7 +18,10 @@ const db = require('./services/db.js')
  *  CRON job for logging temperature values every 30 minutes.
  */
 cron.schedule("30 * * * *", function() {
-  console.log("running a task every minute");
+  bom.getTemperature(function(data) {
+    let timestamp = new Date().toLocaleString()
+    db.logTemperature(0, data.temperature, data.location, data.time, timestamp)
+  });
 });
 
 
